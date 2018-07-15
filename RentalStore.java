@@ -1,20 +1,15 @@
 package project4;
 
 import javax.swing.*;
-
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
-
-import project4.RentDVDDialog;
 
 public class RentalStore extends AbstractListModel {
 
-	private ArrayList<DVD> listDVDs;
+	public static ArrayList<DVD> listDVDs;
 
 	private boolean filter;
-	
+
 	private Calendar c;
 
 	public RentalStore() {
@@ -28,55 +23,43 @@ public class RentalStore extends AbstractListModel {
 		fireIntervalAdded(this, 0, listDVDs.size());
 	}
 
+	public void delete (DVD a) {
+		for(int i = 0; i < listDVDs.size(); i++) {
+			if(a ==  listDVDs.get(i)) {
+				listDVDs.remove(i);
+				fireIntervalRemoved(this, 0, i);
+			}
+		}
+	}
+
 	public DVD get (int i) {
 		return listDVDs.get(i);
 	}
 
 	public Object getElementAt(int arg0) {	
 
-			//return "Happy";
-
 		DVD unit = listDVDs.get(arg0);
 
-		//		String rentedOnDateStr = DateFormat.getDateInstance(DateFormat.SHORT)
-		//				.format(unit.getRentedOn().getTime());
-
-		//String line = "Name: " + " " + listDVDs.get(arg0).getNameOfRenter();
-
-		//		if (unit instanceof Game)
-		//			line += ", Car Player: " + ((Game)unit).getPlayer();
-
-		
 		String line = "Name: " + " " + listDVDs.get(arg0).getNameOfRenter();
-
-		line += "    Title: " + " " + listDVDs.get(arg0).getTitle();
-		//line += "	Rented on: "  +" " + rentedOnTxt;
-		
-		//line += "	Due back: "  +" " + DueBackTxt;
-		
-		//creating a gregorian calendar
-		c = new GregorianCalendar();
-		
-		//making the calendar appear in a simple format
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		
-		//date is getting the time of the calendar
-		Date date = c.getTime();
-	
-		
-		
-		line += "    Rented On: " + " " + listDVDs.get(arg0).getBought();
+		line += "    Title: " + " " + listDVDs.get(arg0).getTitle();	
+		line += "    Rented On: " + " " + listDVDs.get(arg0).getBoughtString();
 		line += "    Due Back On: " + " " + listDVDs.get(arg0).getDueBack();
 
 		if (unit instanceof Game) {
-		line += "    Console: " + ((Game)unit).getGamePlayerType();
+			line += "    Console: " + ((Game)unit).getGamePlayerType();
 		}
-		
+
 		return line;
 	}
 
+
+	public void Undo() {
+		DVD lastOne = listDVDs.get(getSize()-1);
+		listDVDs.remove(lastOne);
+		///add a fireinterval removed
+	}
+
 	public int getSize() {
-	//	return 5;
 		return listDVDs.size();
 	}
 
@@ -89,9 +72,9 @@ public class RentalStore extends AbstractListModel {
 		}
 		catch (IOException ex) {
 			JOptionPane.showMessageDialog(null,"Error in saving db");
-
 		}
 	}
+
 
 	public void loadFromSerializable(String filename) {
 		try {
