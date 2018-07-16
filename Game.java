@@ -3,13 +3,13 @@ package project4;
 import java.util.GregorianCalendar;
 import java.io.Serializable;
 
-/************************************************************************
- * This class finds the information about the type of console used to 
- * play the game and the cost of renting a game.
+/********************************************************************
+ * This class finds the information about the type of console 
+ * used to play the game and the cost of renting a game.
  *
  * @author Kelly Hancox and Isfar Baset
  * @version July 15, 2018
- ************************************************************************/
+ *******************************************************************/
 public class Game extends DVD implements Serializable {
 
 	/** Represents the type of player */
@@ -18,33 +18,33 @@ public class Game extends DVD implements Serializable {
 	/** This is a part of Serializable */
 	private static final long serialVersionUID = 1L;
 
-	/************************************************************************
+	/****************************************************************
 	 * This method sets the name of the gaming console
 	 * 
 	 * @param type of gaming console
 	 * @return none
-	 ************************************************************************/
+	 ****************************************************************/
 	protected void setPlayerType(PlayerType gameSystem) {
 		// put it in the dialog
 		this.player = gameSystem;
 	}
 
-	/************************************************************************
+	/****************************************************************
 	 * This method returns the name of the gaming console
 	 * 
 	 * @param none
 	 * @return type of gaming console
-	 ************************************************************************/
+	 ****************************************************************/
 	public PlayerType getGamePlayerType() {
 		return player;
 	}
 
-	/************************************************************************
+	/****************************************************************
 	 * This method returns the cost of renting a game
 	 * 
 	 * @param date that is being returned on
 	 * @return cost of renting game
-	 ************************************************************************/
+	 ****************************************************************/
 	public double getCost(GregorianCalendar date) {
 
 		// condition if the game is returned late

@@ -8,14 +8,16 @@ import java.util.*;
 import project4.RentDVDDialog;
 import project4.RentGameDialog;
 import project4.RentLateDialog;
-/************************************************************************
- * This class is the GUI witch which the user interacts with to rent a 
- * game or a dvd 
+
+/*********************************************************************
+ * This class is the GUI witch which the user
+ *  interacts with to rent a game or a dvd 
  *
  * @author Kelly Hancox and Isfar Baset
  * @version July 15, 2018
- ************************************************************************/
-public class RentalStoreGUI extends JFrame implements ActionListener {
+ *********************************************************************/
+public class RentalStoreGUI extends JFrame 
+implements ActionListener {
     
 	/** This is a part of Serializable */
 	private static final long serialVersionUID = 1L;
