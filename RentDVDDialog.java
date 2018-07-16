@@ -91,7 +91,8 @@ ActionListener {
 		unit = d;
 
 		// allows user to close window
-		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation
+		(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		//sets panel
 		JPanel textPanel = new JPanel();
@@ -112,7 +113,8 @@ ActionListener {
 		c = new GregorianCalendar();
 
 		//making the calendar appear in a simple format
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		DateFormat dateFormat = new 
+				SimpleDateFormat("MM/dd/yyyy");
 
 		//date is getting the time of the calendar
 		Date date = c.getTime();
@@ -121,7 +123,8 @@ ActionListener {
 		textPanel.add(new JLabel("Rented on: "));
 
 		//this is the box where they can input date
-		rentedOnTxt = new JTextField(dateFormat.format(date), 30);
+		rentedOnTxt = new 
+				JTextField(dateFormat.format(date), 30);
 
 		//this is what adds the box to the panel
 		textPanel.add(rentedOnTxt);
@@ -136,13 +139,15 @@ ActionListener {
 		textPanel.add(new JLabel("Due back: "));
 
 		//this is what shows up in the due back box
-		dueBackTxt = new JTextField(dateFormat.format(date), 30);
+		dueBackTxt = new 
+				JTextField(dateFormat.format(date), 30);
 
 		//this puts the due back box on the panel
 		textPanel.add(dueBackTxt);
 
 		//this adds the entire boxes to the whole pane 
-		getContentPane().add(textPanel, BorderLayout.CENTER);
+		getContentPane().
+		add(textPanel, BorderLayout.CENTER);
 
 		// Instantiate and display two buttons
 		okButton = new JButton("OK");
@@ -156,7 +161,8 @@ ActionListener {
 		buttonPanel.add(cancelButton);
 		
 		// adds the button panel to the panel
-		getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+		getContentPane().
+		add(buttonPanel, BorderLayout.SOUTH);
 		
 		//adds the actionlisteners to buttons
 		okButton.addActionListener(this);

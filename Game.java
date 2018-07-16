@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Game extends DVD implements Serializable {
 
 	/** Represents the type of player */
-	private PlayerType player; // Xbox360, PS4, Xbox720, PS3, GameCube
+	private PlayerType player; 
 
 	/** This is a part of Serializable */
 	private static final long serialVersionUID = 1L;
