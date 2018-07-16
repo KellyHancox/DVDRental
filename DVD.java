@@ -47,7 +47,8 @@ public class DVD implements Serializable {
 				new SimpleDateFormat("MM/dd/yyyy");
 
 		// turns the date into a string
-		String formattedDate = myDateFormat.format(bought.getTime());
+		String formattedDate = myDateFormat.
+				format(bought.getTime());
 
 		// changed from calendar to return a string
 		return formattedDate;
@@ -87,7 +88,8 @@ public class DVD implements Serializable {
 				new SimpleDateFormat("MM/dd/yyyy");
 
 		// turns the date into a string
-		String formattedDate = myDateFormat.format(dueBack.getTime());
+		String formattedDate = myDateFormat.
+				format(dueBack.getTime());
 
 		// changed this from calendar to string
 		return formattedDate;
