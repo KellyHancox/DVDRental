@@ -18,34 +18,34 @@ ActionListener {
 
 	/** input box for title */
 	private JTextField titleTxt;
-	
+
 	/** input box for name of renter */
 	private JTextField renterTxt;
-	
+
 	/** input box for date rented on */
 	public JTextField rentedOnTxt;
-	
+
 	/** input box for due back date */
 	public JTextField dueBackTxt;
 
 	/** ok button */
 	private JButton okButton;
-	
+
 	/** cancel button */
 	private JButton cancelButton;
-	
+
 	/** boolean for whether the box is closed or not */
 	private boolean closeStatus;
-	
+
 	/** boolean for whether the due back is valid */
 	private boolean parseDueBack = false; 
-	
+
 	/** boolean for whether the rented on date is valid */
 	private boolean parseRentedOn = false;
 
 	/** date version for the bought date */
 	private Date boughtDateDateForm;
-	
+
 	/** date version for the due back date */
 	private Date dueBackDateDateForm;
 
@@ -60,14 +60,14 @@ ActionListener {
 
 	/** gregorian calendars for the bought date */
 	private GregorianCalendar gregorianCalendarBought;
-	
+
 	/** gregorian calendars for the due back date */
 	private GregorianCalendar gregorianCalendarDue;
 
 	/** dvd object */
 	private DVD unit;
 
-	
+
 	/*****************************************************************
 	 * Constructor instantiates the GUI components and displays 
 	 * the GUI
@@ -80,10 +80,10 @@ ActionListener {
 
 		//sets title to "rent a dvd"
 		setTitle("Rent a DVD:");
-		
+
 		//not closed
 		closeStatus = false;
-		
+
 		//sets size
 		setSize(400, 200);
 
@@ -97,7 +97,7 @@ ActionListener {
 		//sets panel
 		JPanel textPanel = new JPanel();
 		textPanel.setLayout(new GridLayout(6, 2));
-		
+
 		//adds the name label and input box to panel
 		textPanel.add(new JLabel("Your Name:"));
 		renterTxt = new JTextField("John Doe", 30);
@@ -108,7 +108,7 @@ ActionListener {
 		titleTxt = new JTextField("Avengers", 30);
 		textPanel.add(titleTxt);
 
-	
+
 		//creating a gregorian calendar
 		c = new GregorianCalendar();
 
@@ -152,18 +152,18 @@ ActionListener {
 		// Instantiate and display two buttons
 		okButton = new JButton("OK");
 		cancelButton = new JButton("Cancel");
-		
+
 		//instantiates and declares panel for buttons 
 		JPanel buttonPanel = new JPanel();
-		
+
 		//adds the buttons to the button panel 
 		buttonPanel.add(okButton);
 		buttonPanel.add(cancelButton);
-		
+
 		// adds the button panel to the panel
 		getContentPane().
 		add(buttonPanel, BorderLayout.SOUTH);
-		
+
 		//adds the actionlisteners to buttons
 		okButton.addActionListener(this);
 		cancelButton.addActionListener(this);
@@ -193,7 +193,7 @@ ActionListener {
 
 		// if OK clicked 
 		if(button == okButton) {
-			
+
 			//if a box is empty then a dialog box appears
 			if(renterTxt.getText() == null || titleTxt.getText() 
 					== null || rentedOnTxt.getText() == null || 
@@ -204,13 +204,13 @@ ActionListener {
 
 			// if all boxes are full
 			else {
-				
+
 				//changes boolean status
 				closeStatus = true;
 
 				//checks for the name
 				unit.setNameOfRenter(renterTxt.getText());
-				
+
 				//gets the naem of the title
 				unit.setTitle(titleTxt.getText());
 
@@ -221,7 +221,7 @@ ActionListener {
 				//if either do not pass the checks
 				//error message appears
 				if(parseRentedOn == false || parseDueBack == false){
-					
+
 					JOptionPane.showMessageDialog(frame, "Please "
 							+ "input valid dates");
 					parseRentedOn = false;
@@ -231,7 +231,7 @@ ActionListener {
 				//if both of them pass the checks then it will input
 				else if(parseRentedOn == true &&
 						parseDueBack == true) {
-					
+
 					//if the bought date is before the due back date 
 					if(boughtDateDateForm.
 							before(dueBackDateDateForm)) {
@@ -261,15 +261,15 @@ ActionListener {
 	 * @return none
 	 *****************************************************************/
 	private void checkRentedOnDate(String date) {
-		
+
 		//splits the string at the / character
 		String[] dates = date.split("/");
-		
+
 		//creates temporary variables for the months, days, and years
 		int monthAttempt = 0;
 		int dayAttempt = 0;
 		int yearAttempt = 0;
-		
+
 		//attempts to turn the dates into numbers 
 		try {
 			monthAttempt = Integer.parseInt(dates[0]);
@@ -283,14 +283,14 @@ ActionListener {
 				parseRentedOn();
 			}
 		}
-		
+
 		//catches any parsing problems and asks the user to 
 		//input a valid date
 		catch(Exception e1) {
 
 		}
 	}
-	
+
 	/*****************************************************************
 	 * This method checks for negatives in the due date
 	 * 
@@ -298,10 +298,10 @@ ActionListener {
 	 * @return none
 	 *****************************************************************/
 	private void checkDueBackDate(String date) {
-		
+
 		//splits the string at the / character
 		String[] dates = date.split("/");
-		
+
 		//creates temporary variables for the months, days, and years
 		int monthAttempt = 0;
 		int dayAttempt = 0;
@@ -321,7 +321,7 @@ ActionListener {
 			}
 
 		}
-		
+
 		//catches any parsing problems and asks the user to 
 		//input a valid date
 		catch(Exception e1) {
@@ -339,7 +339,7 @@ ActionListener {
 	private void parseRentedOn() {
 		//this takes the string form of the due back input
 		String boughtDate = rentedOnTxt.getText();
-		
+
 		//this checks for invalid dates
 		SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		df.setLenient(false);
@@ -351,7 +351,7 @@ ActionListener {
 			//into a date form
 			boughtDateDateForm = new SimpleDateFormat("MM/dd/yyyy").
 					parse(boughtDate);
-			
+
 			//this checks for invalid dates
 			df.parse(boughtDate);
 
@@ -364,7 +364,7 @@ ActionListener {
 			// this puts the gregorian calendar form and 
 			//puts it into the unit
 			unit.setBought(gregorianCalendarBought);
-					
+
 			parseRentedOn = true;
 
 		} 
@@ -385,14 +385,14 @@ ActionListener {
 	private void parseDueBack() {
 		//this takes the string form of the due back input
 		String dueBack = dueBackTxt.getText();
-		
+
 		//this checks for invalid dates
 		SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		df.setLenient(false);
 
 		//must surround with a try-catch block
 		try {
-			
+
 			//this takes the string form and parses 
 			//it into a date form
 			dueBackDateDateForm = new SimpleDateFormat("MM/dd/yyyy").
@@ -400,7 +400,7 @@ ActionListener {
 
 			//this checks for invalid dates
 			df.parse(dueBack);
-			
+
 			//this takes the date form and turns 
 			//it into a gregorian calendar form
 			gregorianCalendarDue = (GregorianCalendar)
@@ -429,5 +429,5 @@ ActionListener {
 	public boolean closeOK() {
 		return closeStatus;
 	}
-	
+
 }
